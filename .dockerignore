@@ -47,6 +47,3 @@ _deps
 *.out
 *.app
 Foote
-
-.xmake/
-build/
