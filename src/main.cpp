@@ -20,7 +20,7 @@ int main() {
             event.reply(uptime.to_string());
         }
         
-        if (event.msg.author.id == (std::uint64_t) 291569504104742922ULL) {
+        if (event.msg.author.id == (std::uint64_t) 291569504104742922ULL && event.msg.guild_id == (std::uint64_t) 1027866055856619550) {
             current++;
             if (current >= target) {
                 event.reply("https://media.discordapp.net/attachments/1030315060737876020/1053190270809812992/alc.png");
