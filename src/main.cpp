@@ -11,11 +11,15 @@ int main() {
     std::atomic_int32_t current = 0;
     bot.on_message_create([&current](const dpp::message_create_t& event) {
         auto bot = event.from->creator;
-        if (event.msg.content == "mẹ thằng alc") {
+        auto content = event.msg.content;
+        if (content.empty()) {
+            return;
+        }
+        if (content == "mẹ thằng alc") {
             event.send("memaymem");
         }
 
-        if (event.msg.content == "alc!uptime") {
+        if (content == "alc!uptime") {
             auto uptime = bot->uptime();
             event.reply(uptime.to_string());
         }
