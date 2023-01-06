@@ -81,8 +81,8 @@ int main()
                 {
                     event.reply("https://media.discordapp.net/attachments/1030315060737876020/1060582175671586866/cac.png");
                     bot->log(dpp::loglevel::ll_info, "dispatched image 2");
+                    current2 = 0;
                 }
-                current2 = 0;
             }
         }
     });
