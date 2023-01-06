@@ -42,9 +42,13 @@ int main()
     bot.intents |= dpp::i_message_content;
     bot.on_log(dpp::utility::cout_logger());
     
-    const int32_t target = 50;
-    std::atomic_int32_t current = 0;
-    bot.on_message_create([&current](const dpp::message_create_t& event) {
+    const int32_t target1 = 50;
+    std::atomic_int32_t current1 = 0;
+    
+    const int32_t target2 = 73;
+    std::atomic_int32_t current2 = 0;
+    
+    bot.on_message_create([&current1, &current2](const dpp::message_create_t& event) {
         auto content = std::string_view(event.msg.content);
         if (content.empty()) return;
         if (is_emote_string(content)) return;
@@ -63,11 +67,22 @@ int main()
         
         if (event.msg.author.id == (std::uint64_t) 291569504104742922ULL && event.msg.guild_id == (std::uint64_t) 1027866055856619550)
         {
-            current++;
-            if (current >= target) {
+            current1++;
+            current2++;
+            
+            if (current1 >= target1) {
                 event.reply("https://media.discordapp.net/attachments/1030315060737876020/1053190270809812992/alc.png");
-                bot->log(dpp::loglevel::ll_info, "dispatched image");
-                current = 0;
+                bot->log(dpp::loglevel::ll_info, "dispatched image 1");
+                current1 = 0;
+            }
+
+            if (current2 >= target2) {
+                if (current1 >= 15 && current1 <= (target1 - 8))
+                {
+                    event.reply("https://media.discordapp.net/attachments/1030315060737876020/1060582175671586866/cac.png");
+                    bot->log(dpp::loglevel::ll_info, "dispatched image 2");
+                }
+                current2 = 0;
             }
         }
     });
