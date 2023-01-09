@@ -57,12 +57,28 @@ int main()
         if (content == "mẹ thằng alc")
         {
             event.send("memaymem");
+            return;
         }
 
         if (content == "alc!uptime")
         {
             auto uptime = bot->uptime();
             event.reply(uptime.to_string());
+            return;
+        }
+        
+        if (content == "alc!count")
+        {
+            bot->current_application_get([&event, &current1, &current2](const dpp::confirmation_callback_t& confirmation) {
+                if (!confirmation.is_error()) {
+                    auto app = std::get<dpp::application>(confirmation.value);
+                    if (app.owner.id == event.msg.author.id)
+                    {
+                        event.reply(std::to_string(current1) + " " + std::to_string(current2));
+                    }
+                }
+            });
+            return;
         }
         
         if (event.msg.author.id == (std::uint64_t) 291569504104742922ULL && event.msg.guild_id == (std::uint64_t) 1027866055856619550)
