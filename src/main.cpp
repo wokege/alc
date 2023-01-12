@@ -83,6 +83,10 @@ int main()
         
         if (event.msg.author.id == (std::uint64_t) 291569504104742922ULL && event.msg.guild_id == (std::uint64_t) 1027866055856619550)
         {
+            if (event.msg.channel_id == (std::uint64_t) 1029248054072721429ULL)
+            {
+                return;
+            }
             current1++;
             current2++;
             
