@@ -87,6 +87,11 @@ int main()
             {
                 return;
             }
+            if (content.substr(0, 4) == "... ")
+            {
+                // shion's command
+                return;
+            }
             current1++;
             current2++;
             
