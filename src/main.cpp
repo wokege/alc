@@ -42,10 +42,10 @@ int main()
     bot.intents |= dpp::i_message_content;
     bot.on_log(dpp::utility::cout_logger());
     
-    const int32_t target1 = 50;
+    const int32_t target1 = 150;
     std::atomic_int32_t current1 = 0;
     
-    const int32_t target2 = 73;
+    const int32_t target2 = 173;
     std::atomic_int32_t current2 = 0;
     
     bot.on_message_create([&current1, &current2](const dpp::message_create_t& event) {
@@ -102,7 +102,7 @@ int main()
             }
 
             if (current2 >= target2) {
-                if (current1 >= 15 && current1 <= (target1 - 8))
+                if (current1 >= 45 && current1 <= (target1 - 16))
                 {
                     event.reply("https://media.discordapp.net/attachments/1030315060737876020/1060582175671586866/cac.png");
                     bot->log(dpp::loglevel::ll_info, "dispatched image 2");
